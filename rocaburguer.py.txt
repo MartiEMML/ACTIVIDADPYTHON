@@ -1,0 +1,63 @@
+# -*- coding: utf-8 -*-
+# Archivo: roca_burguer.py
+
+from datetime import datetime
+
+def main():
+    print("\n=== Bienvenido a ROCA BURGUER ===")
+    print("Menú de Sándwiches:")
+    print("1. Churrasco      $1500")
+    print("2. Completo       $1000")
+    print("3. Vegetariano    $2000")
+    print("4. Barros Luco    $3000")
+
+    precios = {
+        "Churrasco": 1500,
+        "Completo": 1000,
+        "Vegetariano": 2000,
+        "Barros Luco": 3000
+    }
+
+    cantidades = {}
+    total = 0
+
+    # Ingreso de cantidades por producto
+    for producto, precio in precios.items():
+        cant = int(input(f"Ingrese cantidad de {producto}: "))
+        if cant > 0:
+            cantidades[producto] = cant
+            total += precio * cant
+
+    # Preguntar por descuento
+    tiene_codigo = input("¿Tiene código de descuento? (s/n): ").lower()
+    descuento = 0
+    if tiene_codigo == "s":
+        descuento = total * 0.10
+        total -= descuento
+
+    # IVA
+    iva = total * 0.19
+    total_final = total + iva
+
+    # Fecha
+    fecha = datetime.now().strftime("%d-%m-%Y %H:%M:%S")
+
+    # Generar boleta ficticia
+    print("\n========== BOLETA ROCA BURGUER ==========")
+    print(f"Fecha: {fecha}")
+    print("-----------------------------------------")
+    for producto, cant in cantidades.items():
+        precio_unitario = precios[producto]
+        subtotal = precio_unitario * cant
+        print(f"{producto:12} x{cant:<3}  ${subtotal:,.0f}")
+    print("-----------------------------------------")
+    print(f"Subtotal:         ${sum(precios[p]*c for p,c in cantidades.items()):,.0f}")
+    print(f"Descuento:        -${descuento:,.0f}")
+    print(f"IVA (19%):        ${iva:,.0f}")
+    print("-----------------------------------------")
+    print(f"TOTAL A PAGAR:    ${total_final:,.0f}")
+    print("=========================================")
+    print("Gracias por su compra en ROCA BURGUER 🍔")
+
+if __name__ == "__main__":
+    main()
