@@ -1,0 +1,17 @@
+# Programa que pide datos de una persona y muestra información según el género
+
+# Ingresar datos por teclado
+nombre = input("Ingrese su nombre: ")
+edad = int(input("Ingrese su edad: "))
+genero = input("Ingrese su género (M para masculino / F para femenino): ")
+celular = input("Ingrese su número de celular: ")
+
+# Evaluar según el género
+if genero.upper() == "M":
+    print(f"\nNombre: {nombre}")
+    print(f"Edad: {edad} años")
+elif genero.upper() == "F":
+    print(f"\nNombre: {nombre}")
+    print(f"Número de celular: {celular}")
+else:
+    print("\nGénero no reconocido. Por favor ingrese 'M' o 'F'.")
